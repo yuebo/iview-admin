@@ -18,8 +18,9 @@
                                 <Col span="16" style="padding-left:6px;">
                                     <Row class-name="made-child-con-middle" type="flex" align="middle">
                                         <div>
-                                            <b class="card-user-infor-name">Admin</b>
+                                            <b class="card-user-infor-name">Admin1</b>
                                             <p>super admin</p>
+                                            <a @click="testClick">test</a>
                                         </div>
                                     </Row>
                                 </Col>
@@ -255,6 +256,12 @@ export default {
         cancelAdd () {
             this.showAddNewTodo = false;
             this.newToDoItemValue = '';
+        },
+        testClick () {
+            var log = console;
+            this.$ajax.get('/message').then((data) => {
+                log.log(data);
+            });
         }
     }
 };

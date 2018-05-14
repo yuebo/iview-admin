@@ -2,6 +2,7 @@ import axios from 'axios';
 import env from '../../build/env';
 import semver from 'semver';
 import packjson from '../../package.json';
+import router from '../router';
 
 let util = {
 
@@ -12,7 +13,7 @@ util.title = function (title) {
 };
 
 const ajaxUrl = env === 'development'
-    ? 'http://127.0.0.1:8888'
+    ? 'http://localhost:8888/api'
     : env === 'production'
         ? 'https://www.url.com'
         : 'https://debug.url.com';

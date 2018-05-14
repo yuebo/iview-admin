@@ -45,5 +45,16 @@ module.exports = merge(webpackBaseConfig, {
                 'text-editor.vue'
             ]
         })
-    ]
+    ],
+    devServer: {
+        port: 8888,
+        proxy: {
+            "/api": {
+                target: "http://localhost:8080",
+                pathRewrite: {"^/api" : ""}
+            }
+        }
+    },
+
+
 });

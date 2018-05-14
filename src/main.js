@@ -11,8 +11,9 @@ import util from './libs/util';
 
 Vue.use(VueI18n);
 Vue.use(iView);
+Vue.prototype.$ajax = util.ajax;
 
-new Vue({
+let root = new Vue({
     el: '#app',
     router: router,
     store: store,
@@ -42,3 +43,32 @@ new Vue({
         this.$store.commit('setTagsList', tagsList);
     }
 });
+// ajax全局拦截器
+Vue.prototype.$ajax.interceptors.response.use(
+    response => {
+        return response;
+    },
+    error => {
+        if (error.response) {
+            var log = console
+            log.log(appRouter)
+            switch (error.response.status) {
+                case 401:
+                case 403:
+                    root.$router.push({
+                        name: 'error-403'
+                    });
+                    break;
+                case 404:
+                    root.$router.push({
+                        name: 'error-404'
+                    });
+                    break;
+                case 500:
+                    root.$router.push({
+                        name: 'error-500'
+                    });
+            }
+        }
+        return Promise.reject(error.response.data);
+    });
