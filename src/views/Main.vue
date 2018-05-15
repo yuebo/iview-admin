@@ -132,6 +132,10 @@
                     this.$store.commit('addOpenSubmenu', pathArr[1].name);
                 }
                 this.userName = Cookies.get('user');
+                let permissions = sessionStorage.getItem('permissions');
+                if (permissions) {
+                    this.$store.commit('setUserPermissions',JSON.parse(permissions));
+                }
                 let messageCount = 3;
                 this.messageCount = messageCount.toString();
                 this.checkTag(this.$route.name);
@@ -151,6 +155,7 @@
                         // 退出登录
                         this.$store.commit('logout', this);
                         this.$store.commit('clearOpenedSubmenu');
+                        sessionStorage.removeItem('permissions')
                         this.$router.push({
                             name: 'login'
                         });

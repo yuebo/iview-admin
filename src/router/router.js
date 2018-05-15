@@ -25,7 +25,7 @@ export const page403 = {
         title: '403-权限不足'
     },
     name: 'error-403',
-    component: () => import('@//views/error-page/403.vue')
+    component: () => import('@/views/error-page/403.vue')
 };
 
 export const page500 = {
@@ -81,10 +81,10 @@ export const appRouter = [
         icon: 'lock-combination',
         title: '权限测试页',
         name: 'accesstest',
-        access: 0,
+        access: '作业管理',
         component: Main,
         children: [
-            { path: 'index', title: '权限测试页', name: 'accesstest_index', access: 0, component: () => import('@/views/access/access-test.vue') }
+            { path: 'index', title: '权限测试页', name: 'accesstest_index', access: '作业管理', component: () => import('@/views/access/access-test.vue') }
         ]
     },
     {

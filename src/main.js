@@ -12,6 +12,7 @@ import util from './libs/util';
 Vue.use(VueI18n);
 Vue.use(iView);
 Vue.prototype.$ajax = util.ajax;
+Vue.prototype.$log = console
 
 let root = new Vue({
     el: '#app',
@@ -58,16 +59,18 @@ Vue.prototype.$ajax.interceptors.response.use(
                     root.$router.push({
                         name: 'error-403'
                     });
-                    break;
+                    return;
                 case 404:
                     root.$router.push({
                         name: 'error-404'
                     });
-                    break;
+                    return;
                 case 500:
                     root.$router.push({
                         name: 'error-500'
                     });
+                    return;
+                default:
             }
         }
         return Promise.reject(error.response.data);

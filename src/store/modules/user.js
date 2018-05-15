@@ -1,7 +1,9 @@
 import Cookies from 'js-cookie';
 
 const user = {
-    state: {},
+    state: {
+        permissions: []
+    },
     mutations: {
         logout (state, vm) {
             Cookies.remove('user');
@@ -19,6 +21,11 @@ const user = {
             if (theme) {
                 localStorage.theme = theme;
             }
+            state.permissions.splice(0, state.permissions.length);
+        },
+        setUserPermissions (state, permissions) {
+            state.permissions.splice(0, state.permissions.length);
+            state.permissions.push(...permissions);
         }
     }
 };

@@ -41,13 +41,13 @@ util.oneOf = function (ele, targetArr) {
     }
 };
 
-util.showThisRoute = function (itAccess, currentAccess) {
-    if (typeof itAccess === 'object' && Array.isArray(itAccess)) {
-        return util.oneOf(currentAccess, itAccess);
-    } else {
-        return itAccess === currentAccess;
-    }
-};
+// util.showThisRoute = function (itAccess, currentAccess) {
+//     if (typeof itAccess === 'object' && Array.isArray(itAccess)) {
+//         return util.oneOf(currentAccess, itAccess);
+//     } else {
+//         return itAccess === currentAccess;
+//     }
+// };
 
 util.getRouterObjByName = function (routers, name) {
     if (!name || !routers || !routers.length) {
@@ -266,5 +266,16 @@ util.checkUpdate = function (vm) {
         }
     });
 };
+util.hasAccess = function (access) {
+    let permissions = sessionStorage.getItem('permissions');
+    if (!access) {
+        return true;
+    }
+    if (access && !permissions) {
+        return false;
+    } else {
+        return this.oneOf(access, JSON.parse(permissions));
+    }
+}
 
 export default util;
