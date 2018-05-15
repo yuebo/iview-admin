@@ -63,7 +63,7 @@ export default {
                 if (valid) {
                     this.loading = true;
                     this.$ajax.post('/public/login', {
-                        'name': this.form.userName,
+                        'username': this.form.userName,
                         'password': this.form.password
                     }).then((response) => {
                         // Cookies.set('password', this.form.password);
